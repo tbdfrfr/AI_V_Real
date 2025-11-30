@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI vs Real Detection Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>AI vs Real Detection Test</h1>
+        </header>
+
+        <!-- Game UI -->
+        <div id="game" class="game-section">
+            <div class="timer-container">
+                <div id="timer" class="timer">Time Left: --</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <p class="instruction">Click on the image you think is AI</p>
+
+            <div class="image-container">
+                <div id="box-left" class="image-box" onclick="guess('left')">
+                    <img id="image-left" src="" alt="left image">
+                </div>
+                <div id="box-right" class="image-box" onclick="guess('right')">
+                    <img id="image-right" src="" alt="right image">
+                </div>
+            </div>
+        </div>
+
+        <!-- Shown if user already took the test -->
+        <div id="blocked" class="blocked-section" style="display:none;">
+            <div class="alert alert-warning">
+                <h2>⚠️ Already Completed</h2>
+                <p>You have already completed this test. For data integrity, you cannot retake it.</p>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results" class="results-section" style="display:none;"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <a id="repo-link" class="corner-link" href="https://github.com/tbdfrfr/AI_V_Real" target="_blank" rel="noopener noreferrer">If you want to learn more about this project check out my repo!</a>
+</body>
+</html>
