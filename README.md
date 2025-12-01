@@ -1,6 +1,6 @@
 **Overview**
 
-This project is a web-based behavioral experiment that measures how quickly humans can distinguish AI-generated images from real photographs under decreasing time.
+This project is a web-based behavioral experiment that measures how quickly humans can distinguish AI-generated images of people from real photographs under decreasing time.
 
 **Test Format**
 

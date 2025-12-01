@@ -3,22 +3,19 @@
 // IMAGE LIST (edit these as needed)
 // -------------------------
 let imageList = [
-    {src: "images/Ai_1.jpg", type: "ai"},
-    {src: "images/Ai_2.jpg", type: "ai"},
-    {src: "images/AI_3.jpg", type: "ai"},
-    {src: "images/ai_4.jpg", type: "ai"},
-    {src: "images/Ai_5.jpg", type: "ai"},
-    {src: "images/AI_6.jpg", type: "ai"},
-    {src: "images/ai_7.jpg", type: "ai"},
-    {src: "images/Ai_8.jpg", type: "ai"},
+    {src: "images/AI1.jpeg", type: "ai"},
+    {src: "images/AI2.jpeg", type: "ai"},
+    {src: "images/AI3.jpeg", type: "ai"},
+    {src: "images/AI4.jpeg", type: "ai"},
+    {src: "images/AI5.jpeg", type: "ai"},
+    {src: "images/AI6.jpeg", type: "ai"},
+    {src: "images/AI7.jpeg", type: "ai"},
+    {src: "images/AI8.jpeg", type: "ai"},
+    {src: "images/AI9.jpeg", type: "ai"},
+    {src: "images/AI10.jpeg", type: "ai"},
+    {src: "images/AI11.jpeg", type: "ai"},
     {src: "images/Real1.jpg", type: "real"},
-    {src: "images/real2.jpg", type: "real"},
-    {src: "images/Real3.jpg", type: "real"},
-    {src: "images/real4.jpg", type: "real"},
-    {src: "images/Real5.jpg", type: "real"},
-    {src: "images/Real6.jpg", type: "real"},
-    {src: "images/Real7.jpg", type: "real"},
-    {src: "images/Real8.jpg", type: "real"}
+
 ];
 
 // -------------------------
