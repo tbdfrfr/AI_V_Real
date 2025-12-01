@@ -383,7 +383,7 @@ function endQuiz() {
     };
 
     // POST to server (if i actually deployed somewhere)
-    fetch("https://script.google.com/macros/s/AKfycbzll6JA4uYJbJuOAiSoRct5Bk24RQWo9P-cmuGhakyvxmD3XBhbbxdRNS7hOLqgydhl/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbwFmg-_C7UKzdFl7d5hsGg7melx-lcq8UlR7fIIOqm7LKLL8rI191hTSoblweCbEAOO/exec", {
         method: "POST",  //Dont do it, i know you want to
         redirect: "follow",
         body: JSON.stringify(data)
