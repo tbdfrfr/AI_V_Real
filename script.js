@@ -1,7 +1,4 @@
-// New single-image quiz logic
-// -------------------------
-// IMAGE LIST (edit these as needed)
-// -------------------------
+//IMAGE LIST 
 let imageList = [
     {src: "images/AI1.jpg", type: "ai"},
     {src: "images/AI2.jpg", type: "ai"},
@@ -381,12 +378,13 @@ function endQuiz() {
         secondsPerQuestionSequence: intervals,
         browser: navigator.userAgent,
         userId: userId,
-        answers: answerLog
+        answers: answerLog,
+        timestamp: new Date().toISOString()
     };
 
-    // POST to server (if configured)
-    fetch("GOOGLE_SCRIPT_URL_HERE", {
-        method: "POST",
+    // POST to server (if i actually deployed somewhere)
+    fetch("https://script.google.com/macros/s/AKfycbzll6JA4uYJbJuOAiSoRct5Bk24RQWo9P-cmuGhakyvxmD3XBhbbxdRNS7hOLqgydhl/exec", {
+        method: "POST",  //Dont do it, i know you want to
         redirect: "follow",
         body: JSON.stringify(data)
     }).catch(err => console.log("Data send error:", err));
@@ -407,10 +405,20 @@ function endQuiz() {
         </div>
     `;
     document.getElementById("results").style.display = "block";
+
+    // Trigger confetti effect
+    if (window.confetti) {
+        // Single burst confetti for celebration YIPPEE :D
+        confetti({
+            particleCount: 120,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
+    }
 }
 
 // -------------------------
-// Setup event listeners
+// Setup event listeners :o
 // -------------------------
 window.addEventListener('DOMContentLoaded', () => {
     // Show modal on load if not already completed
