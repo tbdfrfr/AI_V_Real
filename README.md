@@ -28,7 +28,9 @@ This project is a web-based behavioral experiment that measures how quickly huma
 
 - HTML, CSS, JavaScript (vanilla)
 - LocalStorage for per-device lockout and anonymous id
-- Optional Google Apps Script + Google Sheets for storing results
+- Google Apps Script + Google Sheets for storing results
+- Thispersondoesnotexist for AI portraits (public domain)
+- Flickr-Faces-HQ Dataset (FFHQ) for real portraits (Licence: CC BY-SA 3.0)
 
 
 

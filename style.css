@@ -74,8 +74,19 @@ h1 {
     height: 100%;
     background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
     width: 100%;
-    transition: width 0.1s linear;
+    transition: none;
     border-radius: 10px;
+}
+
+/* Progress color states (changed dynamically) */
+.progress-fill.green {
+    background: linear-gradient(90deg, #34d399 0%, #10b981 100%); /* green */
+}
+.progress-fill.yellow {
+    background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%); /* yellow/orange */
+}
+.progress-fill.red {
+    background: linear-gradient(90deg, #f87171 0%, #ef4444 100%); /* red */
 }
 
 /* Image Display */
@@ -92,8 +103,9 @@ h1 {
 }
 
 .image-container.single .image-box {
-    max-width: 520px;
+    max-width: 640px;
     width: 100%;
+    margin: 0 auto;
 }
 
 .image-box {
@@ -114,9 +126,19 @@ h1 {
 
 .image-box img {
     width: 100%;
-    height: 300px;
-    object-fit: cover;
+    height: auto;
+    max-height: 48vh;
+    object-fit: contain;
     display: block;
+    background: #f6f7fb;
+}
+
+/* Note: keep main UI visible during preload to avoid jarring layout flashes.
+   The modal covers the UI while images load. Only the main image fades in. */
+#image-main {
+    transition: opacity 120ms ease;
+    opacity: 1; /* default visible to avoid blank area while modal shows */
+    will-change: opacity;
 }
 
 /* Feedback states */
