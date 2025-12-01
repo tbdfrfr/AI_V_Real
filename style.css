@@ -87,6 +87,15 @@ h1 {
     flex-wrap: wrap;
 }
 
+.image-container.single {
+    margin-top: 20px;
+}
+
+.image-container.single .image-box {
+    max-width: 520px;
+    width: 100%;
+}
+
 .image-box {
     cursor: pointer;
     border-radius: 15px;
@@ -149,6 +158,20 @@ h1 {
     gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+.button-group button.active {
+    box-shadow: 0 6px 22px rgba(0,0,0,0.18);
+    transform: translateY(-3px);
+    outline: 3px solid rgba(102,126,234,0.12);
+}
+
+.interval-label {
+    display: block;
+    text-align: center;
+    margin-bottom: 8px;
+    color: #444;
+    font-weight: 600;
 }
 
 .btn {

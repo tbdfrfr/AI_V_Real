@@ -22,17 +22,27 @@
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
             </div>
+            <p class="instruction">Decide whether the shown image is <strong>AI</strong> or <strong>REAL</strong></p>
 
-            <p class="instruction">Click on the image you think is AI</p>
-
-            <div class="image-container">
-                <div id="box-left" class="image-box" onclick="guess('left')">
-                    <img id="image-left" src="" alt="left image">
-                </div>
-                <div id="box-right" class="image-box" onclick="guess('right')">
-                    <img id="image-right" src="" alt="right image">
+            <div class="controls">
+                <div style="text-align:center; margin-top:10px;">
+                    <div class="interval-label">The test will automatically get faster after each block of 4 questions (30s → 1s).</div>
+                    <button id="startBtn" class="btn btn-primary" style="margin-top:12px;">Start</button>
                 </div>
             </div>
+
+            <div class="image-container single">
+                <div id="image-box" class="image-box">
+                    <img id="image-main" src="" alt="question image">
+                </div>
+            </div>
+
+            <div class="button-group" style="margin-top:20px; justify-content:center;">
+                <button id="btn-ai" class="btn btn-primary">AI</button>
+                <button id="btn-real" class="btn btn-primary">REAL</button>
+            </div>
+
+            <div id="questionCounter" style="text-align:center; margin-top:14px; color:#667eea; font-weight:600"></div>
         </div>
 
         <!-- Shown if user already took the test -->
