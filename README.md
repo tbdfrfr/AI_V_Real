@@ -30,7 +30,7 @@ This project is a web-based behavioral experiment that measures how quickly huma
 - LocalStorage for per-device lockout and anonymous id
 - Optional Google Apps Script + Google Sheets for storing results
 
-If you'd like, I can add a minimal Google Apps Script receiver and show deployment steps to collect results in a Google Sheet.
+
 
 
 
