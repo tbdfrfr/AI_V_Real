@@ -31,7 +31,7 @@ let imageList = [
 // -------------------------
 let questions = []; //  hold the full sequence of questions (all intervals concatenated)
 let currentIndex = 0;
-let intervals = [40, 30, 20, 15, 10, 5];
+let intervals = [30, 20, 15, 10, 5, 1];
 let timeLeft = 0;
 let currentQuestionMax = 1;
 let timerInterval = null;
@@ -41,6 +41,8 @@ let inputLocked = false;
 let rafId = null;
 let questionEndTime = 0;
 let questionStartTime = 0;
+let imageDisplayPhase = true; // true = image showing, false = image hidden, awaiting response
+let lastGuess = null; // track the participant's last selection
 
 // -------------------------
 // UNIQUE USER ID
@@ -234,6 +236,15 @@ function showQuestion() {
 
     const q = questions[currentIndex];
     const imgEl = document.getElementById('image-main');
+    const btnAI = document.getElementById('btn-ai');
+    const btnReal = document.getElementById('btn-real');
+    
+    // Hide buttons and show image
+    btnAI.style.display = 'none';
+    btnReal.style.display = 'none';
+    imgEl.style.display = 'block';
+    imageDisplayPhase = true;
+    
     // fade-out current image then set new src, let onload fade it in
     try { imgEl.style.opacity = 0; } catch(e) {}
     let onLoaded = () => { try { imgEl.style.opacity = 1; } catch(e) {} };
@@ -272,12 +283,28 @@ function showQuestion() {
                 fill.classList.remove('green', 'yellow');
                 fill.classList.add('red');
             }
-            // log as unanswered (null guess)
-            logAnswer(null);
-            // show brief feedback (flash incorrect) then continue
-            flashIncorrectThenNext();
+            // Hide image and show buttons for participant to choose
+            hideImageAndShowButtons();
         }
     }, 1000);
+}
+
+function hideImageAndShowButtons() {
+    const imgEl = document.getElementById('image-main');
+    const btnAI = document.getElementById('btn-ai');
+    const btnReal = document.getElementById('btn-real');
+    
+    imageDisplayPhase = false;
+    
+    // Fade out and hide image
+    imgEl.style.opacity = 0;
+    setTimeout(() => {
+        imgEl.style.display = 'none';
+        // Show buttons for response
+        btnAI.style.display = 'inline-block';
+        btnReal.style.display = 'inline-block';
+        document.getElementById('timer').innerText = 'Make your choice';
+    }, 300);
 }
 
 function logAnswer(guessedType) {
@@ -296,9 +323,26 @@ function logAnswer(guessedType) {
 function flashIncorrectThenNext() {
     inputLocked = true;
     const box = document.getElementById('image-box');
+    const btnAI = document.getElementById('btn-ai');
+    const btnReal = document.getElementById('btn-real');
+    // apply button glows: red on the chosen (lastGuess), green on the correct
     box.classList.add('incorrect');
+    try {
+        if (lastGuess === 'ai') btnAI.classList.add('incorrect-glow');
+        if (lastGuess === 'real') btnReal.classList.add('incorrect-glow');
+        // highlight the correct button green
+        const correctType = questions[currentIndex].type;
+        if (correctType === 'ai') btnAI.classList.add('correct-glow');
+        if (correctType === 'real') btnReal.classList.add('correct-glow');
+    } catch (e) {}
+
     setTimeout(() => {
         box.classList.remove('incorrect');
+        btnAI.classList.remove('incorrect-glow', 'correct-glow');
+        btnReal.classList.remove('incorrect-glow', 'correct-glow');
+        btnAI.style.display = 'none';
+        btnReal.style.display = 'none';
+        lastGuess = null;
         currentIndex++;
         inputLocked = false;
         showQuestion();
@@ -308,9 +352,22 @@ function flashIncorrectThenNext() {
 function flashCorrectThenNext() {
     inputLocked = true;
     const box = document.getElementById('image-box');
+    const btnAI = document.getElementById('btn-ai');
+    const btnReal = document.getElementById('btn-real');
+    // apply green glow to the chosen button
     box.classList.add('correct');
+    try {
+        if (lastGuess === 'ai') btnAI.classList.add('correct-glow');
+        if (lastGuess === 'real') btnReal.classList.add('correct-glow');
+    } catch (e) {}
+
     setTimeout(() => {
         box.classList.remove('correct');
+        btnAI.classList.remove('correct-glow', 'incorrect-glow');
+        btnReal.classList.remove('correct-glow', 'incorrect-glow');
+        btnAI.style.display = 'none';
+        btnReal.style.display = 'none';
+        lastGuess = null;
         currentIndex++;
         inputLocked = false;
         showQuestion();
@@ -355,6 +412,12 @@ function startFullQuiz() {
 
 function guess(type) {
     if (inputLocked) return;
+    // Only allow guessing after image display phase is complete
+    if (imageDisplayPhase) return;
+    
+    // store last guess for feedback highlighting
+    lastGuess = type;
+
     clearInterval(timerInterval);
     if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
     // record

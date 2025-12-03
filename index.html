@@ -22,17 +22,18 @@
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
             </div>
-            <p class="instruction">Decide whether the shown image is <strong>AI</strong> or <strong>REAL</strong></p>
+            <p class="instruction">Decide whether the Image shown was <strong>AI</strong> or <strong>REAL</strong></p>
 
             <!-- Modal Popup -->
             <div id="instructionModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:9999; justify-content:center; align-items:center;">
                 <div style="background:white; border-radius:20px; padding:40px; max-width:500px; width:90%; box-shadow:0 20px 60px rgba(0,0,0,0.3);">
                     <h2 style="color:#667eea; margin-bottom:16px; font-size:1.8rem;">How this Works</h2>
                     <p style="color:#444; line-height:1.6; margin-bottom:12px;">You'll see 24 images total.</p>
-                    <p style="color:#444; line-height:1.6; margin-bottom:12px;">The test gets progressively faster. Click <strong>AI</strong> or <strong>REAL</strong> for each image.</p>
-                    <p style="color:#666; line-height:1.6; margin-bottom:12px; font-size:0.95rem;">If time runs out, the answer is marked incorrect and the next question appears.</p>
+                    <p style="color:#444; line-height:1.6; margin-bottom:12px;">Each image displays for a set duration (30, 20, 15, 10, 5, or 1 second).</p>
+                    <p style="color:#444; line-height:1.6; margin-bottom:12px;">After the image disappears, click <strong>AI</strong> or <strong>REAL</strong> to make your choice.</p>
+                    <p style="color:#666; line-height:1.6; margin-bottom:12px; font-size:0.95rem;">By continuing you agree to the informed consent <a href="https://www.example.com/terms">Form</a></p>
                     <p style="color:#666; line-height:1.6; margin-bottom:12px; font-size:0.95rem;" id="modalStatus">Preparing images...</p>
-                    <button id="startFromModal" class="btn btn-primary" style="width:100%; margin-top:16px;" disabled>Start Test</button>
+                    <button id="startFromModal" class="btn btn-primary" style="width:100%; margin-top:16px;" disabled>Start!</button>
                 </div>
             </div>
 
