@@ -31,7 +31,7 @@ let imageList = [
 // -------------------------
 let questions = []; //  hold the full sequence of questions (all intervals concatenated)
 let currentIndex = 0;
-let intervals = [30, 20, 15, 10, 5, 1];
+let intervals = [20,10, 8, 5, 3, 1];
 let timeLeft = 0;
 let currentQuestionMax = 1;
 let timerInterval = null;
@@ -238,11 +238,13 @@ function showQuestion() {
     const imgEl = document.getElementById('image-main');
     const btnAI = document.getElementById('btn-ai');
     const btnReal = document.getElementById('btn-real');
+    const timerContainer = document.querySelector('.timer-container');
     
     // Hide buttons and show image
     btnAI.style.display = 'none';
     btnReal.style.display = 'none';
     imgEl.style.display = 'block';
+    if (timerContainer) timerContainer.style.display = 'block';
     imageDisplayPhase = true;
     
     // fade-out current image then set new src, let onload fade it in
@@ -293,6 +295,7 @@ function hideImageAndShowButtons() {
     const imgEl = document.getElementById('image-main');
     const btnAI = document.getElementById('btn-ai');
     const btnReal = document.getElementById('btn-real');
+    const timerContainer = document.querySelector('.timer-container');
     
     imageDisplayPhase = false;
     
@@ -300,6 +303,8 @@ function hideImageAndShowButtons() {
     imgEl.style.opacity = 0;
     setTimeout(() => {
         imgEl.style.display = 'none';
+        // Hide the progress bar
+        if (timerContainer) timerContainer.style.display = 'none';
         // Show buttons for response
         btnAI.style.display = 'inline-block';
         btnReal.style.display = 'inline-block';
@@ -322,11 +327,9 @@ function logAnswer(guessedType) {
 
 function flashIncorrectThenNext() {
     inputLocked = true;
-    const box = document.getElementById('image-box');
     const btnAI = document.getElementById('btn-ai');
     const btnReal = document.getElementById('btn-real');
     // apply button glows: red on the chosen (lastGuess), green on the correct
-    box.classList.add('incorrect');
     try {
         if (lastGuess === 'ai') btnAI.classList.add('incorrect-glow');
         if (lastGuess === 'real') btnReal.classList.add('incorrect-glow');
@@ -337,7 +340,6 @@ function flashIncorrectThenNext() {
     } catch (e) {}
 
     setTimeout(() => {
-        box.classList.remove('incorrect');
         btnAI.classList.remove('incorrect-glow', 'correct-glow');
         btnReal.classList.remove('incorrect-glow', 'correct-glow');
         btnAI.style.display = 'none';
@@ -351,18 +353,15 @@ function flashIncorrectThenNext() {
 
 function flashCorrectThenNext() {
     inputLocked = true;
-    const box = document.getElementById('image-box');
     const btnAI = document.getElementById('btn-ai');
     const btnReal = document.getElementById('btn-real');
     // apply green glow to the chosen button
-    box.classList.add('correct');
     try {
         if (lastGuess === 'ai') btnAI.classList.add('correct-glow');
         if (lastGuess === 'real') btnReal.classList.add('correct-glow');
     } catch (e) {}
 
     setTimeout(() => {
-        box.classList.remove('correct');
         btnAI.classList.remove('correct-glow', 'incorrect-glow');
         btnReal.classList.remove('correct-glow', 'incorrect-glow');
         btnAI.style.display = 'none';
