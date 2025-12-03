@@ -4,7 +4,7 @@ This project is a web-based behavioral experiment that measures how quickly huma
 
 **Test Format**
 
-- **Single Image**: Each question displays one image (not a pair). The participant must decide whether the image is AI-generated or Real using the two buttons labeled `AI` and `REAL`.
+- **Single Image**: Each question displays one image for a varying amount of time. After the time is up, the participant must decide whether the image is AI-generated or Real using the two buttons labeled `AI` and `REAL`.
 - **Automatic Intervals**: The test automatically progresses through these time-per-question blocks: `30s`, `20s`, `15s`, `10s`, `5s`, `1s`.
 - **Questions per Interval**: For each interval there are 4 questions — 2 images are AI and 2 are Real (order randomized). That makes 6 intervals × 4 questions = 24 questions total.
 - **No manual interval selection**: The user presses `Start` and the test runs through all blocks automatically, getting faster after each block.
